@@ -715,7 +715,6 @@ static int max77693_get_cable_type(struct max77693_charger_data *chg_data)
 	u8 dtls_00, chgin_dtls;
 	u8 dtls_01, chg_dtls;
 	u8 mu_st2, chgdetrun, vbvolt, chgtyp, dxovp;
-	bool wc_state;
 	bool retry_det;
 	bool chg_det_erred = false;
 	bool otg_detected = false;
@@ -1011,6 +1010,7 @@ static int max77693_get_battery_state(struct max77693_charger_data *chg_data)
 }
 
 /* extended online type */
+#if 0
 static int max77693_get_online_type(struct max77693_charger_data *chg_data)
 {
 	int m_typ;
@@ -1027,6 +1027,7 @@ static int max77693_get_online_type(struct max77693_charger_data *chg_data)
 
 	return state;
 }
+#endif
 
 void max77693_set_online_type(struct max77693_charger_data *chg_data, int data)
 {
