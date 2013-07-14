@@ -334,7 +334,6 @@ static int fg_check_battery_present(struct i2c_client *client)
 static int max17047_get_temperature(struct i2c_client *client)
 {
 #if defined(CONFIG_MACH_KONA)
-	struct max17047_fuelgauge_data *fg_data = i2c_get_clientdata(client);
 	u8 data[2] = {0x00, 0x00};
 	int temper = 0;
 
@@ -389,7 +388,6 @@ static int max17047_get_vfocv(struct i2c_client *client)
 
 static int fg_read_vcell(struct i2c_client *client)
 {
-	struct max17047_fuelgauge_data *fg_data = i2c_get_clientdata(client);
 	u8 data[2];
 	u32 vcell;
 	u16 w_data;
@@ -457,7 +455,6 @@ static int max17047_get_avgvcell(struct i2c_client *client)
 
 static int max17047_get_rawsoc(struct i2c_client *client)
 {
-	struct max17047_fuelgauge_data *fg_data = i2c_get_clientdata(client);
 	u8 data[2];
 	int soc;
 
@@ -1014,8 +1011,6 @@ void prevent_early_poweroff(struct i2c_client *client,
 int low_batt_compensation(struct i2c_client *client,
 		int fg_soc, int fg_vcell, int fg_current)
 {
-	struct max17047_fuelgauge_data *fg_data =
-				i2c_get_clientdata(client);
 	int fg_avg_current = 0;
 	int fg_min_current = 0;
 	int new_level = 0;
@@ -1380,6 +1375,7 @@ static void max17047_alert_init(struct max17047_fuelgauge_data *fg_data)
 	max17047_i2c_write(client, MAX17047_REG_CONFIG, i2c_data);
 }
 
+#if 0
 static void max17047_reg_init(struct max17047_fuelgauge_data *fg_data)
 {
 	struct i2c_client *client = fg_data->client;
@@ -1398,6 +1394,7 @@ static void max17047_reg_init(struct max17047_fuelgauge_data *fg_data)
 	i2c_data[1] = 0x35;
 	max17047_i2c_write(client, MAX17047_REG_CGAIN, i2c_data);
 }
+#endif
 
 static void max17047_update_work(struct work_struct *work)
 {
