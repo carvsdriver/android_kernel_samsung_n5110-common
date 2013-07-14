@@ -458,8 +458,6 @@ void exynos4_c2c_request_pwr_mode(enum c2c_pwr_mode mode)
 
 static int __init exynos4_pmu_init(void)
 {
-	unsigned int i;
-
 #ifndef CONFIG_EXYNOS_C2C
 	if(!soc_is_exynos4210())
 #endif

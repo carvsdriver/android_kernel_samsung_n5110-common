@@ -182,6 +182,7 @@ static void exynos4_gpio_conpdn_reg(void)
 	__raw_writel(val, gpio_base + GPIO_PUD_PDN_OFFSET);
 }
 
+#if 0
 static void exynos4212_gpio_conpdn_reg(void)
 {
 	void __iomem *gpio_base = S5P_VA_GPIO;
@@ -222,6 +223,7 @@ static void exynos4212_gpio_conpdn_reg(void)
 	val = __raw_readl(gpio_base + GPIO_PUD_OFFSET);
 	__raw_writel(val, gpio_base + GPIO_PUD_PDN_OFFSET);
 }
+#endif
 
 static int check_power_domain(void)
 {
